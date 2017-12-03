@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8">
+      <div>
+        <span for="inputEmail3" class="col-md-3label">From</span>
+        <span for="inputEmail3" class="col-md-3label">123-123-123-123-123</span>
+      </div>
+      <div>
+        <span for="inputEmail3" class="col-md-3label">Amount</span>
+        <span for="inputEmail3" class="col-md-3label">100 PLN</span>
+      </div>
+      <div>
+        <span for="inputEmail3" class="col-md-3label">To</span>
+        <span for="inputEmail3" class="col-md-3label">123-1234-123-1234</span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      please provide last 4 digits
+      <app-canvas></app-canvas>
+      <!--<img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;">-->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <button class="btn btn-default" (click)="send($event)">Confirm</button>
+    </div>
+  </div>
+</div>

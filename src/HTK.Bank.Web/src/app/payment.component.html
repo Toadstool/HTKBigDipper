@@ -1,0 +1,49 @@
+<div class="container-fluid" (mouseover)="captureCoordinate($event)" (click)="captureCoordinate($event)">
+  <div class="row">
+    <div class="col-md-8">
+      <form class="form-horizontal">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-md-3 control-label">From</label>
+            <div class="col-md-9 input-group">
+              <input type="text" class="form-control" id="inputEmail3" placeholder="From">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-md-3 control-label">Amount</label>
+            <div class="col-md-9 input-group">
+              <input type="text" class="form-control" id="inputPassword3" placeholder="Amount">
+              <div class="input-group-addon">PLN</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="inputPassword3" class="col-md-3 control-label">To</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="inputPassword3" placeholder="To">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-md-3 control-label">Name</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="inputPassword3" placeholder="Name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-md-3 control-label">Narrative</label>
+            <div class="col-md-9">
+              <textarea class="form-control" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-offset-8 col-md-10">
+            <button class="btn btn-default" (click)="send($event)">Send</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
