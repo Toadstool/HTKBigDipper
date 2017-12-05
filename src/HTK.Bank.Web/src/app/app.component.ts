@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { AuthenticationService } from './_services/index'
 import { Observable } from 'rxjs/Observable';
 
@@ -10,13 +10,17 @@ import { Observable } from 'rxjs/Observable';
 
 export class AppComponent implements OnInit {
 
-  isLoggedIn: Observable<boolean>;
+  isLoggedIn = false;
 
-  constructor(private authService: AuthenticationService) {   
+  constructor(
+    private authService: AuthenticationService) {   
   }
 
   ngOnInit() {
-    this.isLoggedIn = this.authService.isLoggedIn;
+    this.authService.isLoggedIn.subscribe(data => {
+      this.isLoggedIn = data;
+      
+    });
     this.authService.checkIfLogged();
   }
 

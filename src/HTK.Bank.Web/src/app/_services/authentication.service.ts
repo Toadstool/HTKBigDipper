@@ -20,8 +20,7 @@ export class AuthenticationService {
       user.firstName = username;
 
       localStorage.setItem('currentUser', JSON.stringify(user));
-      this.loggedIn.next(true);
-      console.log('logged');
+      this.loggedIn.next(true);      
 
       observer.next(user);
       observer.complete();

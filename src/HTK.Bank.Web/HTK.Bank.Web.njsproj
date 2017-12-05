@@ -58,6 +58,9 @@
     <TypeScriptCompile Include="src\app\_services\alert.service.ts" />
     <TypeScriptCompile Include="src\app\_services\authentication.service.ts" />
     <TypeScriptCompile Include="src\app\_services\index.ts" />
+    <TypeScriptCompile Include="src\app\_services\payment.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\app\_services\user.service.ts" />
     <TypeScriptCompile Include="src\main.ts" />
     <TypeScriptCompile Include="src\polyfills.ts" />

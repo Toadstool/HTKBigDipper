@@ -7,7 +7,7 @@
       </a>
       <a class="navbar-brand" href="#">Hackathon Bank</a>
     </div>
-    <div class="collapse navbar-collapse" *ngIf="isLoggedIn | async">
+    <div class="collapse navbar-collapse" *ngIf="isLoggedIn">
       <ul class="nav navbar-nav">
         <li [routerLinkActive]="['active']"><a [routerLink]="['home']" href="#">Home<span class="sr-only"></span></a></li>
         <li [routerLinkActive]="['active']"><a [routerLink]="['payment']" href="#">New payment<span class="sr-only"></span></a></li>
@@ -26,7 +26,7 @@
 </nav>
 
 <div class="container-fluid">
-  <div class="col-md-10 col-md-offset-1">
+  <div class="col-md-12">
     <alert></alert>
     <router-outlet></router-outlet>
   </div>

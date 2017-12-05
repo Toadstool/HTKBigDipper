@@ -8,7 +8,7 @@ import { routing } from './app.routing';
 
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
-import { AlertService, AuthenticationService, UserService } from './_services/index';
+import { AlertService, AuthenticationService, UserService, PaymentService } from './_services/index';
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { PaymentComponent, PaymentConfirmComponent, CanvasComponent } from './payment/index'
@@ -34,7 +34,8 @@ import { PaymentComponent, PaymentConfirmComponent, CanvasComponent } from './pa
     AuthGuard,
     AlertService,
     AuthenticationService,
-    UserService
+    UserService,
+    PaymentService
   ],
   bootstrap: [AppComponent]
 })
