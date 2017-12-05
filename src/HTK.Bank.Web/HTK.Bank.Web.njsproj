@@ -22,11 +22,11 @@
   <ItemGroup>
     <Content Include=".angular-cli.json" />
     <Content Include="package.json" />
-    <Content Include="src\app\payment-confirm.component.html" />
-    <Content Include="src\app\home.component.html" />
-    <Content Include="src\app\payment.component.html">
-      <SubType>Code</SubType>
-    </Content>
+    <Content Include="src\app\home\home.component.html" />
+    <Content Include="src\app\login\login.component.html" />
+    <Content Include="src\app\payment\payment-confirm.component.html" />
+    <Content Include="src\app\payment\payment.component.html" />
+    <Content Include="src\app\_directives\alert.component.html" />
     <Content Include="tsconfig.json" />
     <Content Include="tslint.json" />
     <Content Include="README.md" />
@@ -40,14 +40,25 @@
     <Content Include="src\favicon.ico" />
     <Content Include="src\tsconfig.app.json" />
     <Content Include="src\tsconfig.spec.json" />
-    <TypeScriptCompile Include="src\app\canvas.component.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="src\app\home.component.ts" />
-    <TypeScriptCompile Include="src\app\payment-confirm.component.ts" />
-    <TypeScriptCompile Include="src\app\payment.component.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\app.routing.ts" />
+    <TypeScriptCompile Include="src\app\home\home.component.ts" />
+    <TypeScriptCompile Include="src\app\home\index.ts" />
+    <TypeScriptCompile Include="src\app\login\index.ts" />
+    <TypeScriptCompile Include="src\app\login\login.component.ts" />
+    <TypeScriptCompile Include="src\app\payment\canvas.component.ts" />
+    <TypeScriptCompile Include="src\app\payment\index.ts" />
+    <TypeScriptCompile Include="src\app\payment\payment-confirm.component.ts" />
+    <TypeScriptCompile Include="src\app\payment\payment.component.ts" />
+    <TypeScriptCompile Include="src\app\_directives\alert.component.ts" />
+    <TypeScriptCompile Include="src\app\_directives\index.ts" />
+    <TypeScriptCompile Include="src\app\_guards\auth.guard.ts" />
+    <TypeScriptCompile Include="src\app\_guards\index.ts" />
+    <TypeScriptCompile Include="src\app\_models\index.ts" />
+    <TypeScriptCompile Include="src\app\_models\user.ts" />
+    <TypeScriptCompile Include="src\app\_services\alert.service.ts" />
+    <TypeScriptCompile Include="src\app\_services\authentication.service.ts" />
+    <TypeScriptCompile Include="src\app\_services\index.ts" />
+    <TypeScriptCompile Include="src\app\_services\user.service.ts" />
     <TypeScriptCompile Include="src\main.ts" />
     <TypeScriptCompile Include="src\polyfills.ts" />
     <TypeScriptCompile Include="src\test.ts" />
@@ -64,6 +75,13 @@
     <Folder Include="e2e" />
     <Folder Include="src" />
     <Folder Include="src\app" />
+    <Folder Include="src\app\home\" />
+    <Folder Include="src\app\login\" />
+    <Folder Include="src\app\payment\" />
+    <Folder Include="src\app\_directives\" />
+    <Folder Include="src\app\_guards\" />
+    <Folder Include="src\app\_models\" />
+    <Folder Include="src\app\_services\" />
     <Folder Include="src\assets" />
     <Folder Include="src\environments" />
   </ItemGroup>

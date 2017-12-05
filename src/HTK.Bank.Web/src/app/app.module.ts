@@ -1,39 +1,42 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home.component';
-import { PaymentComponent } from './payment.component';
-import { PaymentConfirmComponent } from './payment-confirm.component' 
-import { CanvasComponent } from './canvas.component';
+import { routing } from './app.routing';
 
-
-const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'payment', component: PaymentComponent },
-  { path: 'payment-confirm', component: PaymentConfirmComponent },
-  {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
-  }
-];
+import { AlertComponent } from './_directives/index';
+import { AuthGuard } from './_guards/index';
+import { AlertService, AuthenticationService, UserService } from './_services/index';
+import { HomeComponent } from './home/index';
+import { LoginComponent } from './login/index';
+import { PaymentComponent, PaymentConfirmComponent, CanvasComponent } from './payment/index'
 
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    routing
+  ],
   declarations: [
     AppComponent,
+    AlertComponent,
     HomeComponent,
+    LoginComponent,
     PaymentComponent,
     PaymentConfirmComponent,
     CanvasComponent
   ],
-  imports: [
-    RouterModule.forRoot(appRoutes, { useHash: true }),
-    BrowserModule
+  providers: [
+    AuthGuard,
+    AlertService,
+    AuthenticationService,
+    UserService
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

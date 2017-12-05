@@ -1,22 +1,24 @@
-import { Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from './_services/index'
+import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    moduleId: module.id,
+    selector: 'app',
+    templateUrl: 'app.component.html'
 })
-export class AppComponent  {
-  
-  title = 'Hackathon Bank';
-  
 
+export class AppComponent implements OnInit {
 
-  constructor() {
+  isLoggedIn: Observable<boolean>;
 
+  constructor(private authService: AuthenticationService) {   
   }
 
-
-
+  ngOnInit() {
+    this.isLoggedIn = this.authService.isLoggedIn;
+    this.authService.checkIfLogged();
+  }
 
 
 }

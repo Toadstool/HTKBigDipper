@@ -7,12 +7,33 @@
       </a>
       <a class="navbar-brand" href="#">Hackathon Bank</a>
     </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse" *ngIf="isLoggedIn | async">
       <ul class="nav navbar-nav">
-        <li [routerLinkActive]="['active']" ><a [routerLink]="['home']" href="#">Home<span class="sr-only"></span></a></li>
-        <li [routerLinkActive]="['active']" ><a [routerLink]="['payment']" href="#">New payment<span class="sr-only"></span></a></li>
+        <li [routerLinkActive]="['active']"><a [routerLink]="['home']" href="#">Home<span class="sr-only"></span></a></li>
+        <li [routerLinkActive]="['active']"><a [routerLink]="['payment']" href="#">New payment<span class="sr-only"></span></a></li>
       </ul>
-    </div>
+      <div class="pull-right">
+        <ul class="nav navbar-nav">
+          <li>
+          <button [routerLink]="['login']" type="submit" class="btn navbar-btn btn-danger" name="logout" id="logout" value="Log Out">Log Out</button>
+            
+          </li>
+        </ul>
+      </div>      
+    </div>    
+   
   </div>
 </nav>
-<router-outlet></router-outlet>
+
+<div class="container-fluid">
+  <div class="col-md-10 col-md-offset-1">
+    <alert></alert>
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<div class="text-center">
+  <p>
+    <a href="https://hackathonkrakow.com/" target="_top">Hackathon Krakow</a>
+  </p>
+</div>
