@@ -5,13 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
+using System.Web.Hosting;
 using System.Web.Http;
 
 namespace HTK.Bank.Api.Controllers
 {
     public class MouseController : ApiController
     {
-        private static string DATABASE_NAME = @"D:\sandbox\HTK-Big-Dipper\HTK.Bank.db";
+        private string DATABASE_NAME = HostingEnvironment.MapPath(@"~/App_Data/HTK.Bank.db"); 
 
         [HttpGet]
         public Batch[] Get()
