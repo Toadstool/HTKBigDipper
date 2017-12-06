@@ -28,7 +28,7 @@ export class PaymentComponent {
   send() {
 
     console.log(this.events.length);
-    this.paymentService.testMovement(this.events).subscribe(x => {
+    this.paymentService.saveMovements(this.events).subscribe(x => {
       console.log(x);
     });
     this.router.navigate(['payment-confirm']);

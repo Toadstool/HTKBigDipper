@@ -11,7 +11,7 @@ using System.Web.Http;
 
 namespace HTK.Bank.Api.Controllers
 {
-    public class MouseController : ApiController
+    public class MovementController : ApiController
     {
         private string DATABASE_NAME = HostingEnvironment.MapPath(@"~/App_Data/HTK.Bank.db"); 
 
@@ -25,9 +25,8 @@ namespace HTK.Bank.Api.Controllers
             }            
         }
 
-
         [HttpPost]
-        public int TestMovement(List<Movement> movements)
+        public int SaveMovements(List<Movement> movements)
         {            
             var headers = Request.Headers;
             var userName = headers.GetValues("UserName").First();
@@ -51,7 +50,6 @@ namespace HTK.Bank.Api.Controllers
            
             return movements.Count;
         }
-
          
         private double? Direction(Movement m1, Movement m2)
         {
@@ -66,9 +64,9 @@ namespace HTK.Bank.Api.Controllers
             var direction= Math.Acos(x / c)*180/Math.PI;
             if(y<0)
             {
-                return Math.Round(360 - direction,1);
+                return Math.Round(360 - direction,0);
             }
-            return Math.Round(direction,1);
+            return Math.Round(direction,0);
             
         }
 
@@ -92,7 +90,7 @@ namespace HTK.Bank.Api.Controllers
             }
             var angle = Math.Acos((c1 * c1 + c2 * c2 - c3 * c3) / (2 * c1 * c2)) * 180 / Math.PI;
 
-            return Math.Round(angle,1);
+            return Math.Round(angle,0);
 
         }
 

@@ -10,8 +10,8 @@ export class PaymentService {
   constructor(private http: Http) { }
 
   
-  testMovement(movement: any) {
-    return this.http.post(`${environment.apiUrl}/Mouse`, movement, this.jwt()).map((response: Response) => response.json());
+  saveMovements(movement: any) {
+    return this.http.post(`${environment.apiUrl}/Movement`, movement, this.jwt()).map((response: Response) => response.json());
   }
 
   
