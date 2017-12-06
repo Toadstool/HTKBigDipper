@@ -3,22 +3,18 @@ using LiteDB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web;
-using System.Web.Hosting;
 using System.Web.Http;
 
 namespace HTK.Bank.Api.Controllers
 {
     public class MovementController : ApiController
     {
-        private string DATABASE_NAME = HostingEnvironment.MapPath(@"~/App_Data/HTK.Bank.db"); 
+        
 
         [HttpGet]
         public Batch[] Get()
         {
-            using (var db = new LiteDatabase(DATABASE_NAME))
+            using (var db = new LiteDatabase(Settings.DATABASE_FILE_PATH))
             {
                 var collection = db.GetCollection<Batch>();
                 return collection.FindAll().ToArray<Batch>();
@@ -38,7 +34,7 @@ namespace HTK.Bank.Api.Controllers
                 movements[i].CurvatureDistance =CurvatureDistance(movements[i], movements[i + 1], movements[i + 2]);
             }
 
-            using (var db = new LiteDatabase(DATABASE_NAME))
+            using (var db = new LiteDatabase(Settings.DATABASE_FILE_PATH))
             {
                 var collection = db.GetCollection<Batch>();
                 var batch = new Batch();
