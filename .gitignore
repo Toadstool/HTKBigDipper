@@ -287,3 +287,4 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 /HTK.Bank.db
+/src/HTK.Bank.Api/App_Data/HTK.Bank.db
