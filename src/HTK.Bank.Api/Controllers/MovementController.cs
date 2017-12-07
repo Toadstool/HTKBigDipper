@@ -10,7 +10,6 @@ namespace HTK.Bank.Api.Controllers
     public class MovementController : ApiController
     {
         
-
         [HttpGet]
         public Batch[] Get()
         {
