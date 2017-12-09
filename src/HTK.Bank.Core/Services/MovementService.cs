@@ -24,6 +24,7 @@ namespace HTK.Bank.Core.Services
                 return collection.FindAll().ToArray<Batch>();
             }
         }
+       
 
         public Guid Save(string userName, List<Movement> movements)
         {

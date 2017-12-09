@@ -1,18 +1,17 @@
-﻿using Accord.MachineLearning.VectorMachines.Learning;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Accord.MachineLearning;
+using Accord.MachineLearning.VectorMachines;
+using Accord.MachineLearning.VectorMachines.Learning;
 
 namespace HTK.Bank.Core.Services
 {
     public class SVMService
     {
-        public bool[] Check(double[][] input, double[] output, double[][] check)
+        SupportVectorMachine _svm;
+
+
+        public void Learn(double[][] input, double[] output)
         {
 
-            // Create a L2-regularized L2-loss support vector classification algorithm
             var teacher = new LinearDualCoordinateDescent()
             {
                 Loss = Loss.L2,
@@ -20,13 +19,20 @@ namespace HTK.Bank.Core.Services
                 Tolerance = 1e-5
             };
 
-            // Use the algorithm to learn the machine
-            var svm = teacher.Learn(input, output);
+            _svm = teacher.Learn(input, output);
 
-            
-            return svm.Decide(check);          
+         
+        }
+        
+        public bool[] Check(double[][] check)
+        {
+
+            return _svm.Decide(check);          
           
         }
+
+
+
 
     }
 }
