@@ -1,5 +1,6 @@
-﻿using Accord.Statistics.Distributions.Fitting;
-using Accord.Statistics.Distributions.Multivariate;
+﻿using Accord.Math.Distances;
+using Accord.Statistics.Distributions.Univariate;
+using Accord.Statistics.Testing;
 using HTK.Bank.Api.Models;
 using LiteDB;
 using System;
@@ -14,23 +15,28 @@ namespace HTK.Bank.Api.Controllers
         [HttpGet]
         public double Test()
         {
-            var obs1 = GetMovements(null,null);          
+            var obs1 = GetMovements(null, null, Measure.AngleOfCurvature);
+            var obs2 = GetMovements(null, "40c38b8c-d6c6-4c13-a5a8-15caa604c94f", Measure.AngleOfCurvature);
 
-            var nor1 = new MultivariateNormalDistribution(3);
-            nor1.Fit(obs1);
+            var dis1 = new double[360];
+            var dis2 = new double[360];
+            var div1=  obs1.Sum();
+            var div2 = obs2.Sum();
 
-            var obs2 = GetMovements(null, "40c38b8c-d6c6-4c13-a5a8-15caa604c94f");
-            var nor2 = new MultivariateNormalDistribution(3);
-            nor2.Fit(obs1);
+            for (int i = 0; i < 360; i++)
+            {
+                dis1[i] = obs1.Where(x => x <= i).Sum()/ div1;
+                dis2[i] = obs2.Where(x => x <= i).Sum()/ div2;
+            }
 
+           
+            var chi = new ChiSquareTest(dis1, dis2, 1);
 
-            var metric = new Accord.Math.Distances.Bhattacharyya();
-            return metric.Distance(nor1, nor2);
+            return 0;
 
-            
         }
 
-        private static double[][] GetMovements(string user, string ID)
+        private static double[] GetMovements(string user, string ID, Measure measure)
         {
             var batches = new List<Batch>();
             using (var db = new LiteDatabase(Settings.DATABASE_FILE_PATH))
@@ -48,10 +54,26 @@ namespace HTK.Bank.Api.Controllers
                 }
             }
 
-            double[][] observations = batches.SelectMany(x => x.Movements)
-              .Select(x => new double[] { x.AngleOfCurvature ?? 0, x.CurvatureDistance ?? 0, x.Direction ?? 0 }).ToArray<double[]>();
+            if(measure== Measure.AngleOfCurvature)
+            {
+                return batches.SelectMany(x => x.Movements)
+                .Select(x =>  x.AngleOfCurvature ?? 0 ).ToArray<double>();
+            }
 
-            return observations;
+            if (measure == Measure.CurvatureDistance)
+            {
+                return batches.SelectMany(x => x.Movements)
+                .Select(x => x.CurvatureDistance ?? 0).ToArray<double>();
+            }
+
+            if (measure == Measure.Direction)
+            {
+                return batches.SelectMany(x => x.Movements)
+                .Select(x => x.Direction ?? 0).ToArray<double>();
+            }
+
+
+            return new double[] { };
         }
     }
 }
