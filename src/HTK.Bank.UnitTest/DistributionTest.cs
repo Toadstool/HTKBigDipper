@@ -22,7 +22,7 @@ namespace HTK.Bank.UnitTest
                 CreateMockedMovement(150),
                 CreateMockedMovement(359),
             };
-            var business = new Distribution();
+            var business = new AI();
 
             var distribution = business.CreateDistribution(mousMovements);
             Console.WriteLine(distribution);
