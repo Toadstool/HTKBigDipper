@@ -17,17 +17,17 @@ namespace HTK.Bank.UnitTest
         [TestMethod]
         public void SHOULD_Generate_Distribution_based_on_list_of_movements()
         {
-            var dawid01 = _movementService.GetMovements("Dawid01", null, Measure.AngleOfCurvature);
-            var dawid02 = _movementService.GetMovements("Dawid02", null, Measure.AngleOfCurvature);
-            var dawid03 = _movementService.GetMovements("Dawid03", null, Measure.AngleOfCurvature);
-            var dawid04 = _movementService.GetMovements("Dawid04", null, Measure.AngleOfCurvature);
-            var dawid05 = _movementService.GetMovements("Dawid05", null, Measure.AngleOfCurvature);
+            var dawid01 = _movementService.GetMovements("Dawid01", null, Factor.AngleOfCurvature);
+            var dawid02 = _movementService.GetMovements("Dawid02", null, Factor.AngleOfCurvature);
+            var dawid03 = _movementService.GetMovements("Dawid03", null, Factor.AngleOfCurvature);
+            var dawid04 = _movementService.GetMovements("Dawid04", null, Factor.AngleOfCurvature);
+            var dawid05 = _movementService.GetMovements("Dawid05", null, Factor.AngleOfCurvature);
 
-            var hari01 = _movementService.GetMovements("Hari", null, Measure.AngleOfCurvature);
-            var hari02 = _movementService.GetMovements("jrab", null, Measure.AngleOfCurvature);
+            var hari01 = _movementService.GetMovements("Hari", null, Factor.AngleOfCurvature);
+            var hari02 = _movementService.GetMovements("jrab", null, Factor.AngleOfCurvature);
 
-            var marek01 = _movementService.GetMovements(null, "012414fd-aba2-4df3-93b8-dced0308a07f", Measure.AngleOfCurvature);
-            var marek02 = _movementService.GetMovements(null, "980279aa-6140-4e00-846f-6806a2c329bb", Measure.AngleOfCurvature);
+            var marek01 = _movementService.GetMovements(null, "012414fd-aba2-4df3-93b8-dced0308a07f", Factor.AngleOfCurvature);
+            var marek02 = _movementService.GetMovements(null, "980279aa-6140-4e00-846f-6806a2c329bb", Factor.AngleOfCurvature);
 
             Console.WriteLine("=== Dawid01 ===");
             Verify(dawid01, dawid01, true);

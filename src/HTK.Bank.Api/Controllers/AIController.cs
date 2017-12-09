@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using Accord.Statistics.Testing;
+using HTK.Bank.Api.Models;
 using HTK.Bank.Core.Models;
 using HTK.Bank.Core.Services;
 
@@ -12,71 +12,50 @@ namespace HTK.Bank.Api.Controllers
     {
         private MovementService _movementService = new MovementService(Settings.DATABASE_FILE_PATH);
         private DistributionService _distribiutionService = new DistributionService();
-      
 
-        [HttpGet]
-        public string Test()
+        [HttpPost]
+        public TestResult Test(List<Movement> movements)
         {
-            var input = new List<double[]>();
-            var output = new List<double>();
-
+            
+            var headers = Request.Headers;
+            var userName = headers.GetValues("UserName").First();
+          
             var batches = _movementService.Get();
 
-            foreach (var batch in batches)
+            var testResult = new TestResult();
+            testResult.UserName = userName;
+
+            var svm = new SVMService();
+            if(svm.TestFactor(Factor.AngleOfCurvature, batches, movements, userName))
             {
-                input.Add(batch.Movements.Take(20).Select(x => {
-
-                    if(Double.IsNaN(x.AngleOfCurvature ?? 0))
-                    {
-                        return 0;
-                    }                    
-                    return x.AngleOfCurvature ?? 0; }
-                ).ToArray());
-
-                if(batch.UserName == "marek")
-                {
-                    output.Add(1);
-                }else
-                {
-                    output.Add(0);
-                }
-
+                testResult.Score += 30;
             }
-            var resoults = "";
-
-            var svmService = new SVMService();
-            svmService.Learn(input.ToArray(), output.ToArray());
-            foreach (var batch in batches)
+            if (svm.TestFactor(Factor.CurvatureDistance, batches, movements, userName))
             {
-                var check = new List<double[]>();
-                check.Add(batch.Movements.Take(20).Select(x => {
+                testResult.Score += 30;
+            }
+            if (svm.TestFactor(Factor.Direction, batches, movements, userName))
+            {
+                testResult.Score += 30;
+            }
 
-                    if (Double.IsNaN(x.AngleOfCurvature ?? 0))
-                    {
-                        return 0;
-                    }
-                    return x.AngleOfCurvature ?? 0;
-                }
-                ).ToArray());
-
-
-                var ans= svmService.Check(check.ToArray());
-
-
-                resoults += batch.ID.ToString() + " " + batch.UserName + " " + ans[0].ToString() + "  ";
+            if (testResult.Score > 60)
+            {
+                testResult.Verified = true;
+                _movementService.Save(userName, movements);
 
             }
 
-
-
-            return resoults;
+            return testResult;
         }
 
+      
 
-        public double Test2()
+        
+        public double TestDistance()
         {
-            var obs1 = _movementService.GetMovements(null, null, Measure.AngleOfCurvature);
-            var obs2 = _movementService.GetMovements(null, "40c38b8c-d6c6-4c13-a5a8-15caa604c94f", Measure.AngleOfCurvature);
+            var obs1 = _movementService.GetMovements(null, null, Factor.AngleOfCurvature);
+            var obs2 = _movementService.GetMovements(null, "40c38b8c-d6c6-4c13-a5a8-15caa604c94f", Factor.AngleOfCurvature);
             var distance = _distribiutionService.Distance(obs1, obs2, 360);
 
             return 0;

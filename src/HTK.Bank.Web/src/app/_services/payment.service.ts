@@ -11,7 +11,12 @@ export class PaymentService {
 
   
   saveMovements(movement: any) {
-    return this.http.post(`${environment.apiUrl}/Movement`, movement, this.jwt()).map((response: Response) => response.json());
+    return this.http.post(`${environment.apiUrl}/Movement/SaveMovements`, movement, this.jwt()).map((response: Response) => response.json());
+  }
+
+
+  testMovements(movement: any) {
+    return this.http.post(`${environment.apiUrl}/AI/Test`, movement, this.jwt()).map((response: Response) => response.json());
   }
 
   

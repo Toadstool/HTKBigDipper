@@ -21,17 +21,16 @@ export class PaymentComponent {
       y: event.y,
       type: event.type
     });
-
-    //console.log(event);
+    
   }
 
   send() {
 
     console.log(this.events.length);
 
-    this.paymentService.saveMovements(this.events).subscribe(x => {
+    this.paymentService.testMovements(this.events).subscribe(x => {
 
-      this.router.navigate(['payment-confirm', { verification: false, score:60 }]);
+      this.router.navigate(['payment-confirm', { verified: x.Verified, score: x.Score }]);
 
       console.log(x);
     });

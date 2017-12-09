@@ -17,9 +17,12 @@ export class PaymentConfirmComponent implements OnInit {
 
   ngOnInit() {
 
-    if (this.route.snapshot.params['verification']==true)
+    var resoult = this.route.snapshot.params['verified'];
+    console.log(resoult);
+
+    if (resoult=='true')
     {
-      this.verification = "completed";
+      this.verification = "passed";
     }
     else
     {

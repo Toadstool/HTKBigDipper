@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AIController.cs" />
+    <Compile Include="Models\TestResult.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MovementController.cs" />

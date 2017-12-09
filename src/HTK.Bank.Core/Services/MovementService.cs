@@ -50,7 +50,7 @@ namespace HTK.Bank.Core.Services
             return ID;
         }
 
-        public double[] GetMovements(string user, string ID, Measure measure)
+        public double[] GetMovements(string user, string ID, Factor measure)
         {
             var batches = new List<Batch>();
             using (var db = new LiteDatabase(_databasePath))
@@ -68,19 +68,19 @@ namespace HTK.Bank.Core.Services
                 }
             }
 
-            if (measure == Measure.AngleOfCurvature)
+            if (measure == Factor.AngleOfCurvature)
             {
                 return batches.SelectMany(x => x.Movements)
                 .Select(x => x.AngleOfCurvature ?? 0).ToArray<double>();
             }
 
-            if (measure == Measure.CurvatureDistance)
+            if (measure == Factor.CurvatureDistance)
             {
                 return batches.SelectMany(x => x.Movements)
                 .Select(x => x.CurvatureDistance ?? 0).ToArray<double>();
             }
 
-            if (measure == Measure.Direction)
+            if (measure == Factor.Direction)
             {
                 return batches.SelectMany(x => x.Movements)
                 .Select(x => x.Direction ?? 0).ToArray<double>();

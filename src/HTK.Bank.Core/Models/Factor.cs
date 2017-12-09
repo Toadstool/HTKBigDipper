@@ -5,7 +5,7 @@ using System.Web;
 
 namespace HTK.Bank.Core.Models
 {
-    public enum Measure
+    public enum Factor
     {
         AngleOfCurvature,
         CurvatureDistance,
