@@ -80,6 +80,10 @@ namespace HTK.Bank.UnitTest
             resutl = _aiService.Distance2(person1, person2, 360);
             Console.WriteLine(string.Format("\t\t - Distance 2 result: [{0}]", resutl));
 
+            foreach (var item in person2)
+            {
+                Console.WriteLine(Math.Truncate(item));
+            }
         }
     }
 }

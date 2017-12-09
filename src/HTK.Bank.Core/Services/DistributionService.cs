@@ -39,8 +39,8 @@ namespace HTK.Bank.Core.Services
             {
                 var values = inputConverted.Where(_ => _ == i + 1).ToList();
                 dis[i] = values.Count / input.Length;
-                if (values.Count > 0)
-                    Console.WriteLine(string.Format("{0}\t{1}", i + 1, values.Count));
+                //if (values.Count > 0)
+                //    Console.WriteLine(string.Format("{0}\t{1}", i + 1, values.Count));
             }
 
             return dis;
