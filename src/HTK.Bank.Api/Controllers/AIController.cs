@@ -20,11 +20,11 @@ namespace HTK.Bank.Api.Controllers
             var userName = headers.GetValues("UserName").First();
           
             var batches = _movementService.Get();
-            if(batches.Count(x=>x.UserName== userName) <5)
-            {
-                _movementService.Save(userName, movements);
-                return new TestResult() { UserName = userName, Verified = true, Score = 0 };
-            }
+            //if(batches.Count(x=>x.UserName== userName) <5)
+            //{
+            //    _movementService.Save(userName, movements);
+            //    return new TestResult() { UserName = userName, Verified = true, Score = 0 };
+            //}
 
 
             var testResult = new TestResult();
@@ -33,15 +33,18 @@ namespace HTK.Bank.Api.Controllers
             var svm = new SVMService();
             if(svm.TestFactor(Factor.AngleOfCurvature, batches, movements, userName))
             {
-                testResult.Score += 30;
+                testResult.Score += 33;
+                testResult.Description += "AngleOfCurvature; ";
             }
             if (svm.TestFactor(Factor.CurvatureDistance, batches, movements, userName))
             {
-                testResult.Score += 30;
+                testResult.Score += 33;
+                testResult.Description += "CurvatureDistance; ";
             }
             if (svm.TestFactor(Factor.Direction, batches, movements, userName))
             {
-                testResult.Score += 30;
+                testResult.Score += 33;
+                testResult.Description += "Direction; ";
             }
 
             if (testResult.Score > 60)

@@ -82,9 +82,9 @@ namespace HTK.Bank.Core.Services
 
             var teacher = new LinearDualCoordinateDescent()
             {
-                Loss = Loss.L2,
-                Complexity = 1000,
-                Tolerance = 1e-5
+                //Loss = Loss.L1,
+                //Complexity = 1000,
+                //Tolerance = 1e-5
             };
 
             _svm = teacher.Learn(input, output);

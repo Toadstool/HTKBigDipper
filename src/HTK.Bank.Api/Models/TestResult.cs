@@ -21,5 +21,12 @@ namespace HTK.Bank.Api.Models
         {
             get;set;
         }
+
+        public string Description
+        {
+            get; set;
+        }
+
+        
     }
 }
