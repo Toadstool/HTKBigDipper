@@ -4,7 +4,7 @@ using System;
 
 namespace HTK.Bank.Core.Services
 {
-    public class AIService
+    public class DistributionService
     {
        
         public double Distance(double [] obs1, double[] obs2, int maxValue)

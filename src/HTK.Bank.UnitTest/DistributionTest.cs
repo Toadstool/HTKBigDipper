@@ -11,7 +11,7 @@ namespace HTK.Bank.UnitTest
     [TestClass]
     public class DistributionTest
     {
-        private AIService _aiService = new AIService();
+        private DistributionService _aiService = new DistributionService();
         MovementService _movementService = new MovementService(Path.Combine(Environment.CurrentDirectory, "App_Data/HTK.Bank.db"));
         
         [TestMethod]
