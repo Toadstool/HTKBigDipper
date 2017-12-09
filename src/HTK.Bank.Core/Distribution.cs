@@ -19,5 +19,20 @@ namespace HTK.Bank.Core
 
             return normalDistribution.ToString();
         }
+
+        public double[][] GetZScore(double[][] inputs)
+        {
+            return Accord.Statistics.Tools.ZScores(inputs);
+        }
+
+        public double[][] GetCenter(double[][] inputs)
+        {
+            return Accord.Statistics.Tools.Center(inputs);
+        }
+
+        public double[][] GetStandardize(double[][] inputs)
+        {
+            return Accord.Statistics.Tools.Standardize(inputs);
+        }
     }
 }
