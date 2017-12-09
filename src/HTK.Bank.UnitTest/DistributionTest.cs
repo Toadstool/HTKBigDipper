@@ -73,8 +73,13 @@ namespace HTK.Bank.UnitTest
 
         private void Verify(double[] person1, double[] person2, bool expectedResult)
         {
+            Console.WriteLine("Shoule be {0}:", expectedResult ? "Same" : "Different");
             var resutl = _aiService.Distance(person1, person2, 360);
-            Console.WriteLine(string.Format("Shoule be {0}: result: [{1}]", expectedResult ? "Same" : "Different", resutl));
+            Console.WriteLine(string.Format("\t\t - Distance 1 result: [{0}]", resutl));
+
+            resutl = _aiService.Distance2(person1, person2, 360);
+            Console.WriteLine(string.Format("\t\t - Distance 2 result: [{0}]", resutl));
+
         }
     }
 }
