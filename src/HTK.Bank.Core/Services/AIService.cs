@@ -6,7 +6,7 @@ namespace HTK.Bank.Core.Services
     public class AIService
     {
        
-        public ChiSquareTest Distance(double [] obs1, double[] obs2,int maxValue)
+        public double Distance(double [] obs1, double[] obs2,int maxValue)
         {
             var dis1 = new double[maxValue];
             var dis2 = new double[maxValue];
@@ -19,7 +19,7 @@ namespace HTK.Bank.Core.Services
                 dis2[i] = obs2.Where(x => x <= i).Sum() / div2;
             }
 
-            return new ChiSquareTest(dis1, dis2, 1);
+            return new ChiSquareTest(dis1, dis2, 1).PValue;
 
 
         }
