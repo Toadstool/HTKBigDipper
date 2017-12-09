@@ -28,10 +28,14 @@ export class PaymentComponent {
   send() {
 
     console.log(this.events.length);
+
     this.paymentService.saveMovements(this.events).subscribe(x => {
+
+      this.router.navigate(['payment-confirm', { verification: false, score:60 }]);
+
       console.log(x);
     });
-    this.router.navigate(['payment-confirm']);
+    
     return false;
 
 
