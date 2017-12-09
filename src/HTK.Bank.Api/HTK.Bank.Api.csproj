@@ -110,15 +110,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AIController.cs" />
-    <Compile Include="Models\Measure.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MovementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Batch.cs" />
-    <Compile Include="Models\Movement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

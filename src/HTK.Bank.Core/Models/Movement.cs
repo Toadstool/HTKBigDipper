@@ -1,9 +1,9 @@
 ﻿using HTK.Bank.Core.Models;
 using System;
 
-namespace HTK.Bank.Api.Models
+namespace HTK.Bank.Core.Models
 {
-    public class Movement : IMovement
+    public class Movement
     {
         public DateTime Time { get; set; }
         public int X { get; set;}
