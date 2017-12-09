@@ -1,39 +1,52 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-        <img width="80" src="https://hackathonkrakow.com/images/logo_top.png">
-      </a>
-      <a class="navbar-brand" href="#">Hackathon Bank</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img width="80" src="https://hackathonkrakow.com/images/logo_top.png">
+  </a>
+  <a class="navbar-brand" href="#">Hackathon Bank</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="isLoggedIn">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link" href="#" [routerLink]="['home']">Home <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link" href="#" [routerLink]="['payment']">Payments <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Loans</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Investments</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Help</a>
+      </li>
+    </ul>
+    <div class="my-2 my-lg-0">
+
+      <button [routerLink]="['login']" type="submit" class="btn navbar-btn btn-danger" name="logout" id="logout" value="Log Out">Log Out</button>
+
     </div>
-    <div class="collapse navbar-collapse" *ngIf="isLoggedIn">
-      <ul class="nav navbar-nav">
-        <li [routerLinkActive]="['active']"><a [routerLink]="['home']" href="#">Home<span class="sr-only"></span></a></li>
-        <li [routerLinkActive]="['active']"><a [routerLink]="['payment']" href="#">New payment<span class="sr-only"></span></a></li>
-      </ul>
-      <div class="pull-right">
-        <ul class="nav navbar-nav">
-          <li>
-          <button [routerLink]="['login']" type="submit" class="btn navbar-btn btn-danger" name="logout" id="logout" value="Log Out">Log Out</button>
-            
-          </li>
-        </ul>
-      </div>      
-    </div>    
-   
   </div>
 </nav>
 
-<div class="container-fluid">
-  <div class="col-md-12">
+
+<div class="container-fluid wrapper" id="wrap" style="min-height:300px;">
+  <div class="col-md-12" id="main">
     <alert></alert>
     <router-outlet></router-outlet>
   </div>
 </div>
 
-<div class="text-center">
-  <p>
-    <a href="https://hackathonkrakow.com/" target="_top">Hackathon Krakow</a>
-  </p>
+<div class="footer">
+  <div class="text-center">
+    <p>
+      <a href="https://hackathonkrakow.com/" target="_top">Hackathon Krakow</a>
+    </p>
+  </div>  
 </div>

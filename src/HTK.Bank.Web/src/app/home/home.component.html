@@ -1,4 +1,56 @@
-<div class="col-md-6 col-md-offset-1">
-    <h1>Hi {{currentUser.firstName}}!</h1>
-        
+<div class="col-md-10 col-md-offset-1">
+
+  <h2>Hello {{currentUser.firstName}}!</h2>
+  <div class="row">
+
+    <div class="card col-md-5" style="width: 20rem;margin: 10px;">
+      <div class="card-body">
+        <h4 class="card-title">Demand account</h4>
+
+        <p class="card-text">Banalce: 1000 PLN</p>
+        <a href="#" class="card-link" [routerLink]="['payment']" >Make payment</a>
+        <a href="#" class="card-link">Check history</a>
+      </div>
+    </div>
+
+    <div class="card col-md-5" style="width: 20rem;margin: 10px;">
+      <div class="card-body">
+        <h4 class="card-title">Saving account</h4>
+
+        <p class="card-text">Banalce: 530 PLN</p>
+        <a href="#" class="card-link" [routerLink]="['payment']" >Make payment</a>
+        <a href="#" class="card-link">Check history</a>
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <div class="row">
+
+    <div class="card col-md-5" style="width: 20rem;margin: 10px;">
+      <div class="card-body">
+        <h4 class="card-title">Credit card</h4>
+
+        <p class="card-text">Available balance: 5000 PLN</p>
+        <a href="#" class="card-link" [routerLink]="['payment']" >Make payment</a>
+        <a href="#" class="card-link">Check history</a>
+      </div>
+    </div>
+
+    <div class="card col-md-5" style="width: 20rem;margin: 10px;">
+      <div class="card-body">
+        <h4 class="card-title">Mortgage</h4>
+
+        <p class="card-text">Debt: 400 000 PLN</p>
+        <a href="#" class="card-link">Details</a>
+        <a href="#" class="card-link">Check history</a>
+      </div>
+    </div>
+
+  </div>
+
+
+
 </div>

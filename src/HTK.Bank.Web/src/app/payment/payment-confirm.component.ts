@@ -1,31 +1,34 @@
-import {Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'payment-confirm-component',
   templateUrl: './payment-confirm.component.html'
- })
-export class PaymentConfirmComponent {
+})
+export class PaymentConfirmComponent implements OnInit {
 
-  events = [];
+  verification="";
+  score="0%";
 
-  captureCoordinate(event) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router) { }
 
-    var now = new Date();
-    this.events.push({
-      time: now,
-      x: event.x,
-      y: event.y,
-      type: event.type
-    });
 
-    //console.log(event);
+  ngOnInit() {
+
+    if (this.route.snapshot.params['verification']==true)
+    {
+      this.verification = "completed";
+    }
+    else
+    {
+      this.verification = "you have failed verification process";
+    }
+    
+    this.score = this.route.snapshot.params['score']+"%";
+   
   }
-
-
-  send() {
-
-  }
-
-
 
 }
+
