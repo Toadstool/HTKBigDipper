@@ -1,11 +1,6 @@
 ﻿using Accord.MachineLearning.VectorMachines.Learning;
 using Accord.Math.Optimization.Losses;
 using Accord.Statistics.Kernels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace HTK.Bank.Api.Controllers
@@ -49,6 +44,5 @@ namespace HTK.Bank.Api.Controllers
 
             return error;
         }
-
     }
 }
