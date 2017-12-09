@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using HTK.Bank.Core.Models;
+using System;
 
 namespace HTK.Bank.Api.Models
 {
-    public class Movement
+    public class Movement : IMovement
     {
         public DateTime Time { get; set; }
         public int X { get; set;}
@@ -14,7 +12,5 @@ namespace HTK.Bank.Api.Models
         public double? Direction { get; set; }
         public double? AngleOfCurvature { get; set; }
         public double? CurvatureDistance { get; set; }
-
-
     }
 }
