@@ -24,7 +24,16 @@ namespace HTK.Bank.Core.Services
                 return collection.FindAll().ToArray<Batch>();
             }
         }
-       
+
+        public void Delete(Guid id)
+        {
+            using (var db = new LiteDatabase(_databasePath))
+            {
+                var collection = db.GetCollection<Batch>();                
+                collection.Delete(x => x.ID == id);
+            }
+        }
+
 
         public Guid Save(string userName, List<Movement> movements)
         {

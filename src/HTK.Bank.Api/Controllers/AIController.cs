@@ -16,11 +16,16 @@ namespace HTK.Bank.Api.Controllers
         [HttpPost]
         public TestResult Test(List<Movement> movements)
         {
-            
             var headers = Request.Headers;
             var userName = headers.GetValues("UserName").First();
           
             var batches = _movementService.Get();
+            if(batches.Count(x=>x.UserName== userName) <5)
+            {
+                _movementService.Save(userName, movements);
+                return new TestResult() { UserName = userName, Verified = true, Score = 0 };
+            }
+
 
             var testResult = new TestResult();
             testResult.UserName = userName;

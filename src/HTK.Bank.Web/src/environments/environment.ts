@@ -5,5 +5,7 @@
 
 export const environment = {
   production: false,
-  apiUrl:'http://localhost/HTK.Bank.Api/api'
+  apiUrl: 'http://localhost/HTK.Bank.Api/api'
+  //apiUrl: 'http://localhost:57550/api'
+
 };

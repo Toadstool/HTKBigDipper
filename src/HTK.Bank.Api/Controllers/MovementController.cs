@@ -10,13 +10,17 @@ namespace HTK.Bank.Api.Controllers
     {
         private MovementService _movementService = new MovementService(Settings.DATABASE_FILE_PATH);
 
-       
+
+        [HttpGet]
+        public void Delete(string id= "3c3d9d1b-2168-4175-85b3-fb8d7a4062bc")
+        {
+            _movementService.Delete(new System.Guid(id));
+        }
+
         [HttpGet]
         public Batch[] Get()
         {
-
-            return _movementService.Get();
-                    
+            return _movementService.Get();                    
         }
 
         [HttpPost]
