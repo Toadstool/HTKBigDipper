@@ -21,11 +21,7 @@ namespace HTK.Bank.Api.Controllers
             var obs2 = _movementService.GetMovements(null, "40c38b8c-d6c6-4c13-a5a8-15caa604c94f", Measure.AngleOfCurvature);
             var distance = _aiService.Distance(obs1, obs2,360);
 
-
-
-
             return 0;
-
         }
 
       
