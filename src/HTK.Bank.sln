@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "HTK.Bank.Web", "HTK.Bank.Web\HTK.Bank.Web.njsproj", "{B83942C7-6887-4149-9BC5-FB6986FF4ED4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTK.Bank.Api", "HTK.Bank.Api\HTK.Bank.Api.csproj", "{7EC1A511-2E24-4463-B32F-B5A7F009D473}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTK.Bank.Core", "HTK.Bank.Core\HTK.Bank.Core.csproj", "{3919B4B1-B0D7-4BBB-9FAB-AAC315C1ACBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTK.Bank.UnitTest", "HTK.Bank.UnitTest\HTK.Bank.UnitTest.csproj", "{EC91D9F8-36CB-459D-A315-B09183ABA0E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{7EC1A511-2E24-4463-B32F-B5A7F009D473}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EC1A511-2E24-4463-B32F-B5A7F009D473}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EC1A511-2E24-4463-B32F-B5A7F009D473}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3919B4B1-B0D7-4BBB-9FAB-AAC315C1ACBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3919B4B1-B0D7-4BBB-9FAB-AAC315C1ACBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3919B4B1-B0D7-4BBB-9FAB-AAC315C1ACBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3919B4B1-B0D7-4BBB-9FAB-AAC315C1ACBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC91D9F8-36CB-459D-A315-B09183ABA0E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC91D9F8-36CB-459D-A315-B09183ABA0E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC91D9F8-36CB-459D-A315-B09183ABA0E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC91D9F8-36CB-459D-A315-B09183ABA0E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
