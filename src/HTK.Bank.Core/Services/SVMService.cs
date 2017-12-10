@@ -47,14 +47,12 @@ namespace HTK.Bank.Core.Services
       
         private void Learn(double[][] input, double[] output)
         {
-
             var teacher = new LinearDualCoordinateDescent()
             {
-                //Loss = Loss.L1,
+                Loss = Loss.L1,
                 //Complexity = 1000,
-                Tolerance = .15
+                Tolerance = .2
             };
-
             _svm = teacher.Learn(input, output);         
         }
 
