@@ -52,7 +52,7 @@ namespace HTK.Bank.Core.Services
             {
                 //Loss = Loss.L1,
                 //Complexity = 1000,
-                //Tolerance = 1e-5
+                Tolerance = .2
             };
 
             _svm = teacher.Learn(input, output);
@@ -107,11 +107,12 @@ namespace HTK.Bank.Core.Services
             var vector = CalculateVector(measure, movements, 100,1);
 
             var dis1 = new double[itemsNumber];           
-            var sum = vector.Sum();
+            var sum = (double)vector.Count();
             
             for (int i = 0; i < itemsNumber; i+= 1)
             {
-                dis1[i] = vector.Where(x => x <= i* step).Sum() / sum;               
+                var count = (double)vector.Where(x => x <= i * step).Count();
+                dis1[i] = count/sum;               
             }
             return dis1;
 
