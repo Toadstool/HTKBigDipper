@@ -25,7 +25,7 @@ namespace HTK.Bank.Api.Controllers
             if (count < 10)
             {
                 _movementService.Save(userName, movements);
-                return new TestResult() { UserName = userName, Verified = true, Score = Math.Round(count/10f,0) };
+                return new TestResult() { UserName = userName, Verified = true, Score = Math.Round(count * 100 / 10,0) };
             }
 
             var itemsNumber = Math.Min(movements.Count, 20);
