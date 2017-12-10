@@ -20,7 +20,7 @@ namespace HTK.Bank.Api.Controllers
             var userName = headers.GetValues("UserName").First();
           
             var batches = _movementService.Get();
-            if (batches.Count(x => x.UserName == userName) < 5)
+            if (batches.Count(x => x.UserName == userName) < 20)
             {
                 _movementService.Save(userName, movements);
                 return new TestResult() { UserName = userName, Verified = true, Score = 0 };
@@ -31,7 +31,7 @@ namespace HTK.Bank.Api.Controllers
             var testResult = new TestResult();
             testResult.UserName = userName;
 
-            var singleitemValue = 100f / 3f;
+            var singleitemValue = 100f / 6f;
             var svm = new SVMService();
             if(svm.TestFactor(Factor.AngleOfCurvature, batches, movements, userName, itemsNumber, 1,svm.CalculateVector))
             {
