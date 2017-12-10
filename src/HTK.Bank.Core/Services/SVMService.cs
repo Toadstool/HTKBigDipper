@@ -47,17 +47,13 @@ namespace HTK.Bank.Core.Services
       
         private void Learn(double[][] input, double[] output)
         {
-
             var teacher = new LinearDualCoordinateDescent()
             {
-                //Loss = Loss.L1,
+                Loss = Loss.L1,
                 //Complexity = 1000,
                 Tolerance = .5
             };
-
-            _svm = teacher.Learn(input, output);
-
-         
+            _svm = teacher.Learn(input, output);         
         }
 
         private bool[] Check(double[][] check)
@@ -66,7 +62,6 @@ namespace HTK.Bank.Core.Services
             return _svm.Decide(check);          
           
         }
-
 
         public double[] CalculateVector(Factor measure, IEnumerable<Movement> movements,int itemsNumber, double step)
         {
@@ -100,7 +95,6 @@ namespace HTK.Bank.Core.Services
 
             }).ToArray();
         }
-
 
         public double[] CalculateCDVector(Factor measure, IEnumerable<Movement> movements,int itemsNumber, double step)
         {

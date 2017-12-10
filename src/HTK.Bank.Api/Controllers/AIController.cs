@@ -20,10 +20,12 @@ namespace HTK.Bank.Api.Controllers
             var userName = headers.GetValues("UserName").First();
           
             var batches = _movementService.Get();
-            if (batches.Count(x => x.UserName == userName) < 15)
+
+            var count = (double)batches.Count(x => x.UserName == userName);
+            if (count < 10)
             {
                 _movementService.Save(userName, movements);
-                return new TestResult() { UserName = userName, Verified = true, Score = 0 };
+                return new TestResult() { UserName = userName, Verified = true, Score = Math.Round(count/10f,0) };
             }
 
             var itemsNumber = Math.Min(movements.Count, 20);
@@ -49,7 +51,7 @@ namespace HTK.Bank.Api.Controllers
                 testResult.Description += "Direction; ";
             }
 
-            if (svm.TestFactor(Factor.AngleOfCurvature, batches, movements, userName, 36, 10, svm.CalculateCDVector))
+            if (svm.TestFactor(Factor.AngleOfCurvature, batches, movements, userName, 360, 1, svm.CalculateCDVector))
             {
                 testResult.Score += singleitemValue;
                 testResult.Description += "CD:AngleOfCurvature; ";
