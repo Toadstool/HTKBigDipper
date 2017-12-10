@@ -27,8 +27,7 @@ namespace HTK.Bank.Core.Services
         public double Distance2(double[] obs1, double[] obs2, int maxValue)
         {
             var dis1 = GetDistribution(obs1, maxValue);
-            var dis2 = GetDistribution(obs2, maxValue);
-
+            var dis2 = GetDistribution(obs2, maxValue);            
             var distance = new ChiSquareTest(dis1, dis2, 1);
             return distance.PValue;
         }

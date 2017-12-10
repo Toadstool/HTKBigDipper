@@ -20,7 +20,7 @@ namespace HTK.Bank.Api.Controllers
             var userName = headers.GetValues("UserName").First();
           
             var batches = _movementService.Get();
-            if (batches.Count(x => x.UserName == userName) < 20)
+            if (batches.Count(x => x.UserName == userName) < 15)
             {
                 _movementService.Save(userName, movements);
                 return new TestResult() { UserName = userName, Verified = true, Score = 0 };
@@ -33,12 +33,12 @@ namespace HTK.Bank.Api.Controllers
 
             var singleitemValue = 100f / 6f;
             var svm = new SVMService();
-            if(svm.TestFactor(Factor.AngleOfCurvature, batches, movements, userName, itemsNumber, 1,svm.CalculateVector))
+            if (svm.TestFactor(Factor.AngleOfCurvature, batches, movements, userName, itemsNumber, 1, svm.CalculateVector))
             {
                 testResult.Score += singleitemValue;
                 testResult.Description += "AngleOfCurvature; ";
             }
-            if (svm.TestFactor(Factor.CurvatureDistance, batches, movements, userName, itemsNumber, 1,svm.CalculateVector))
+            if (svm.TestFactor(Factor.CurvatureDistance, batches, movements, userName, itemsNumber, 1, svm.CalculateVector))
             {
                 testResult.Score += singleitemValue;
                 testResult.Description += "CurvatureDistance; ";
@@ -54,12 +54,12 @@ namespace HTK.Bank.Api.Controllers
                 testResult.Score += singleitemValue;
                 testResult.Description += "CD:AngleOfCurvature; ";
             }
-            if (svm.TestFactor(Factor.CurvatureDistance, batches, movements, userName, 10, .1, svm.CalculateCDVector))
+            if (svm.TestFactor(Factor.CurvatureDistance, batches, movements, userName, 36, 10, svm.CalculateCDVector))
             {
                 testResult.Score += singleitemValue;
                 testResult.Description += "CD:CurvatureDistance; ";
             }
-            if (svm.TestFactor(Factor.Direction, batches, movements, userName, 36, 10, svm.CalculateCDVector))
+            if (svm.TestFactor(Factor.Direction, batches, movements, userName, 36, .1, svm.CalculateCDVector))
             {
                 testResult.Score += singleitemValue;
                 testResult.Description += "CD:Direction; ";

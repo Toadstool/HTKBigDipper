@@ -52,7 +52,7 @@ namespace HTK.Bank.Core.Services
             {
                 //Loss = Loss.L1,
                 //Complexity = 1000,
-                Tolerance = .2
+                Tolerance = .5
             };
 
             _svm = teacher.Learn(input, output);
