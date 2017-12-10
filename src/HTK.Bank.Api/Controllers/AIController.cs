@@ -31,7 +31,7 @@ namespace HTK.Bank.Api.Controllers
             var testResult = new TestResult();
             testResult.UserName = userName;
 
-            var singleitemValue = 100f / 6f;
+            var singleitemValue = 100f / 3f;
             var svm = new SVMService();
             if(svm.TestFactor(Factor.AngleOfCurvature, batches, movements, userName, itemsNumber, 1,svm.CalculateVector))
             {
@@ -49,21 +49,21 @@ namespace HTK.Bank.Api.Controllers
                 testResult.Description += "Direction; ";
             }
 
-            if (svm.TestFactor(Factor.AngleOfCurvature, batches, movements, userName,36, 10,svm.CalculateCDVector))
-            {
-                testResult.Score += singleitemValue;
-                testResult.Description += "CD:AngleOfCurvature; ";
-            }
-            if (svm.TestFactor(Factor.CurvatureDistance, batches, movements, userName, 36,10, svm.CalculateCDVector))
-            {
-                testResult.Score += singleitemValue;
-                testResult.Description += "CD:CurvatureDistance; ";
-            }
-            if (svm.TestFactor(Factor.Direction, batches, movements, userName, 10, 0.1, svm.CalculateCDVector))
-            {
-                testResult.Score += singleitemValue;
-                testResult.Description += "CD:Direction; ";
-            }
+            //if (svm.TestFactor(Factor.AngleOfCurvature, batches, movements, userName,36, 10,svm.CalculateCDVector))
+            //{
+            //    testResult.Score += singleitemValue;
+            //    testResult.Description += "CD:AngleOfCurvature; ";
+            //}
+            //if (svm.TestFactor(Factor.CurvatureDistance, batches, movements, userName, 36,10, svm.CalculateCDVector))
+            //{
+            //    testResult.Score += singleitemValue;
+            //    testResult.Description += "CD:CurvatureDistance; ";
+            //}
+            //if (svm.TestFactor(Factor.Direction, batches, movements, userName, 10, 0.1, svm.CalculateCDVector))
+            //{
+            //    testResult.Score += singleitemValue;
+            //    testResult.Description += "CD:Direction; ";
+            //}
 
             testResult.Score = Math.Round(testResult.Score,2);
             if (testResult.Score > 60)
