@@ -20,13 +20,13 @@ namespace HTK.Bank.Api.Controllers
             var userName = headers.GetValues("UserName").First();
           
             var batches = _movementService.Get();
-            if (batches.Count(x => x.UserName == userName) < 5)
+            if (batches.Count(x => x.UserName == userName) < 20)
             {
                 _movementService.Save(userName, movements);
                 return new TestResult() { UserName = userName, Verified = true, Score = 0 };
             }
 
-            var itemsNumber = Math.Min(movements.Count, 25);
+            var itemsNumber = Math.Min(movements.Count, 20);
 
             var testResult = new TestResult();
             testResult.UserName = userName;
