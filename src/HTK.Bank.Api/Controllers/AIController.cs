@@ -51,17 +51,17 @@ namespace HTK.Bank.Api.Controllers
                 testResult.Description += "Direction; ";
             }
 
-            if (svm.TestFactor(Factor.AngleOfCurvature, batches, movements, userName, 360, 1, svm.CalculateCDVector))
+            if (svm.TestFactor(Factor.AngleOfCurvature, batches, movements, userName, 36, 10, svm.CalculateCDVector))
             {
                 testResult.Score += singleitemValue;
                 testResult.Description += "CD:AngleOfCurvature; ";
             }
-            if (svm.TestFactor(Factor.CurvatureDistance, batches, movements, userName, 36, 10, svm.CalculateCDVector))
+            if (svm.TestFactor(Factor.CurvatureDistance, batches, movements, userName, 10, .1, svm.CalculateCDVector))
             {
                 testResult.Score += singleitemValue;
                 testResult.Description += "CD:CurvatureDistance; ";
             }
-            if (svm.TestFactor(Factor.Direction, batches, movements, userName, 36, .1, svm.CalculateCDVector))
+            if (svm.TestFactor(Factor.Direction, batches, movements, userName, 36, 10, svm.CalculateCDVector))
             {
                 testResult.Score += singleitemValue;
                 testResult.Description += "CD:Direction; ";
