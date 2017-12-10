@@ -26,27 +26,46 @@ namespace HTK.Bank.Api.Controllers
             //    return new TestResult() { UserName = userName, Verified = true, Score = 0 };
             //}
 
+            var itemsNumber = Math.Min(movements.Count, 20);
 
             var testResult = new TestResult();
             testResult.UserName = userName;
 
+            var singleitemValue = 100f / 6f;
             var svm = new SVMService();
-            if(svm.TestFactor(Factor.AngleOfCurvature, batches, movements, userName))
+            if(svm.TestFactor(Factor.AngleOfCurvature, batches, movements, userName, itemsNumber, 1,svm.CalculateVector))
             {
-                testResult.Score += 33;
+                testResult.Score += singleitemValue;
                 testResult.Description += "AngleOfCurvature; ";
             }
-            if (svm.TestFactor(Factor.CurvatureDistance, batches, movements, userName))
+            if (svm.TestFactor(Factor.CurvatureDistance, batches, movements, userName, itemsNumber, 1,svm.CalculateVector))
             {
-                testResult.Score += 33;
+                testResult.Score += singleitemValue;
                 testResult.Description += "CurvatureDistance; ";
             }
-            if (svm.TestFactor(Factor.Direction, batches, movements, userName))
+            if (svm.TestFactor(Factor.Direction, batches, movements, userName, itemsNumber, 1, svm.CalculateVector))
             {
-                testResult.Score += 33;
+                testResult.Score += singleitemValue;
                 testResult.Description += "Direction; ";
             }
 
+            if (svm.TestFactor(Factor.AngleOfCurvature, batches, movements, userName,36, 10,svm.CalculateCDVector))
+            {
+                testResult.Score += singleitemValue;
+                testResult.Description += "CD:AngleOfCurvature; ";
+            }
+            if (svm.TestFactor(Factor.CurvatureDistance, batches, movements, userName, 36,10, svm.CalculateCDVector))
+            {
+                testResult.Score += singleitemValue;
+                testResult.Description += "CD:CurvatureDistance; ";
+            }
+            if (svm.TestFactor(Factor.Direction, batches, movements, userName, 10, 0.1, svm.CalculateCDVector))
+            {
+                testResult.Score += singleitemValue;
+                testResult.Description += "CD:Direction; ";
+            }
+
+            testResult.Score = Math.Round(testResult.Score,2);
             if (testResult.Score > 60)
             {
                 testResult.Verified = true;

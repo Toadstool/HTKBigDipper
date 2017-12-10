@@ -12,16 +12,17 @@ namespace HTK.Bank.Core.Services
     {
         SupportVectorMachine _svm;
 
-        public bool TestFactor(Factor measure, Batch[] batches, List<Movement> movements, string userName)
+        public bool TestFactor(Factor measure, Batch[] batches, List<Movement> movements, string userName, int itemsNumber, double step
+            ,Func<Factor,IEnumerable<Movement>,int, double, double[]> calculateVector)
         {
-            var itemsNumber = Math.Min(movements.Count, 20);
+           
             var input = new List<double[]>();
             var output = new List<double>();
 
 
             foreach (var batch in batches)
             {
-                input.Add(CalculateVector(measure,itemsNumber, batch.Movements));
+                input.Add(calculateVector(measure, batch.Movements,itemsNumber, step));
 
                 if (batch.UserName == userName)
                 {
@@ -38,13 +39,36 @@ namespace HTK.Bank.Core.Services
             Learn(input.ToArray(), output.ToArray());
 
             var check = new List<double[]>();
-            check.Add(CalculateVector(measure,itemsNumber, movements));
+            check.Add(calculateVector(measure, movements,itemsNumber, step));
 
 
             return Check(check.ToArray())[0];
         }
+      
+        private void Learn(double[][] input, double[] output)
+        {
 
-        private double[] CalculateVector(Factor measure,int itemsNumber, IEnumerable<Movement> movements)
+            var teacher = new LinearDualCoordinateDescent()
+            {
+                //Loss = Loss.L1,
+                //Complexity = 1000,
+                //Tolerance = 1e-5
+            };
+
+            _svm = teacher.Learn(input, output);
+
+         
+        }
+
+        private bool[] Check(double[][] check)
+        {
+
+            return _svm.Decide(check);          
+          
+        }
+
+
+        public double[] CalculateVector(Factor measure, IEnumerable<Movement> movements,int itemsNumber, double step)
         {
             return movements.Take(itemsNumber).Select(x =>
             {
@@ -77,29 +101,21 @@ namespace HTK.Bank.Core.Services
             }).ToArray();
         }
 
-        private void Learn(double[][] input, double[] output)
-        {
 
-            var teacher = new LinearDualCoordinateDescent()
+        public double[] CalculateCDVector(Factor measure, IEnumerable<Movement> movements,int itemsNumber, double step)
+        {
+            var vector = CalculateVector(measure, movements, 100,1);
+
+            var dis1 = new double[itemsNumber];           
+            var sum = vector.Sum();
+            
+            for (int i = 0; i < itemsNumber; i+= 1)
             {
-                //Loss = Loss.L1,
-                //Complexity = 1000,
-                //Tolerance = 1e-5
-            };
+                dis1[i] = vector.Where(x => x <= i* step).Sum() / sum;               
+            }
+            return dis1;
 
-            _svm = teacher.Learn(input, output);
-
-         
         }
-
-        private bool[] Check(double[][] check)
-        {
-
-            return _svm.Decide(check);          
-          
-        }
-
-
 
 
     }
