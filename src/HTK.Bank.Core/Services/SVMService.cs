@@ -52,12 +52,10 @@ namespace HTK.Bank.Core.Services
             {
                 //Loss = Loss.L1,
                 //Complexity = 1000,
-                Tolerance = .2
+                Tolerance = .15
             };
 
-            _svm = teacher.Learn(input, output);
-
-         
+            _svm = teacher.Learn(input, output);         
         }
 
         private bool[] Check(double[][] check)
@@ -66,7 +64,6 @@ namespace HTK.Bank.Core.Services
             return _svm.Decide(check);          
           
         }
-
 
         public double[] CalculateVector(Factor measure, IEnumerable<Movement> movements,int itemsNumber, double step)
         {
@@ -100,7 +97,6 @@ namespace HTK.Bank.Core.Services
 
             }).ToArray();
         }
-
 
         public double[] CalculateCDVector(Factor measure, IEnumerable<Movement> movements,int itemsNumber, double step)
         {
