@@ -26,7 +26,7 @@ namespace HTK.Bank.Api.Controllers
                 return new TestResult() { UserName = userName, Verified = true, Score = 0 };
             }
 
-            var itemsNumber = Math.Min(movements.Count, 20);
+            var itemsNumber = Math.Min(movements.Count, 25);
 
             var testResult = new TestResult();
             testResult.UserName = userName;
@@ -54,18 +54,18 @@ namespace HTK.Bank.Api.Controllers
                 testResult.Score += singleitemValue;
                 testResult.Description += "CD:AngleOfCurvature; ";
             }
-            if (svm.TestFactor(Factor.CurvatureDistance, batches, movements, userName, 36, 10, svm.CalculateCDVector))
+            if (svm.TestFactor(Factor.CurvatureDistance, batches, movements, userName, 10, .1, svm.CalculateCDVector))
             {
                 testResult.Score += singleitemValue;
                 testResult.Description += "CD:CurvatureDistance; ";
             }
-            if (svm.TestFactor(Factor.Direction, batches, movements, userName, 10, 0.1, svm.CalculateCDVector))
+            if (svm.TestFactor(Factor.Direction, batches, movements, userName, 36, 10, svm.CalculateCDVector))
             {
                 testResult.Score += singleitemValue;
                 testResult.Description += "CD:Direction; ";
             }
 
-            testResult.Score = Math.Round(testResult.Score,2);
+            testResult.Score = Math.Min(Math.Round(testResult.Score,2),100);
             if (testResult.Score > 60)
             {
                 testResult.Verified = true;
