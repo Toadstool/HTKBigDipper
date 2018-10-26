@@ -48,6 +48,8 @@ namespace HTK.Bank.Core.Services
         private void Learn(double[][] input, double[] output)
         {
             //LinearDualCoordinateDescent
+            //StochasticGradientDescent
+            //ProbabilisticDualCoordinateDescent
             var teacher = new StochasticGradientDescent()
             {
                 //Loss = Loss.L1,

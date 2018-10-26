@@ -33,23 +33,23 @@ namespace HTK.Bank.Api.Controllers
             var testResult = new TestResult();
             testResult.UserName = userName;
 
-            var singleitemValue = 100f / 6f;
+            var singleitemValue = 100f / 3f;
             var svm = new SVMService();
-            if (svm.TestFactor(Factor.AngleOfCurvature, batches, movements, userName, itemsNumber, 1, svm.CalculateVector))
-            {
-                testResult.Score += singleitemValue;
-                testResult.Description += "AngleOfCurvature; ";
-            }
-            if (svm.TestFactor(Factor.CurvatureDistance, batches, movements, userName, itemsNumber, 1, svm.CalculateVector))
-            {
-                testResult.Score += singleitemValue;
-                testResult.Description += "CurvatureDistance; ";
-            }
-            if (svm.TestFactor(Factor.Direction, batches, movements, userName, itemsNumber, 1, svm.CalculateVector))
-            {
-                testResult.Score += singleitemValue;
-                testResult.Description += "Direction; ";
-            }
+            //if (svm.TestFactor(Factor.AngleOfCurvature, batches, movements, userName, itemsNumber, 1, svm.CalculateVector))
+            //{
+            //    testResult.Score += singleitemValue;
+            //    testResult.Description += "AngleOfCurvature; ";
+            //}
+            //if (svm.TestFactor(Factor.CurvatureDistance, batches, movements, userName, itemsNumber, 1, svm.CalculateVector))
+            //{
+            //    testResult.Score += singleitemValue;
+            //    testResult.Description += "CurvatureDistance; ";
+            //}
+            //if (svm.TestFactor(Factor.Direction, batches, movements, userName, itemsNumber, 1, svm.CalculateVector))
+            //{
+            //    testResult.Score += singleitemValue;
+            //    testResult.Description += "Direction; ";
+            //}
 
             if (svm.TestFactor(Factor.AngleOfCurvature, batches, movements, userName, 36, 10, svm.CalculateCDVector))
             {
